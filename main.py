@@ -6,6 +6,7 @@ See README.md
 
 from api import DataApi, tests
 from statistics import mean, mode, median
+import math
 
 # Write your code here #
 
@@ -25,7 +26,7 @@ def worker(whoami, api):
         
         while(len(results) < api.dataapi.parallelism):
             try:
-                # Attempt to recieve_message from notes that have finished computing
+                # Attempt to recieve_message from nodes that have finished computing
                 results.append(int.from_bytes(api.receive_message(), 'little'))
             except:
                 # This section could be refactored.
@@ -48,7 +49,6 @@ def worker(whoami, api):
 
 
 # # # # # # # # # # # # #
-
 tests(worker, sum)
 
 
